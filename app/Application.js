@@ -19,6 +19,11 @@ export default class Application extends Component {
       new Note(2, "note2"),
       new Note(3, "note3"),
       new Note(4, "When working with native code, such as when writing native modules, you can launch the app from Android Studio or Xcode and take advantage of the native debugging features (setting up breakpoints, etc.) as you would in case of building a standard native app."),
+      new Note(5, "When working with native code, such as when writing native modules, you can launch the app from Android Studio or Xcode and take advantage of the native debugging features (setting up breakpoints, etc.) as you would in case of building a standard native app."),
+      new Note(6, "When working with native code, such as when writing native modules, you can launch the app from Android Studio or Xcode and take advantage of the native debugging features (setting up breakpoints, etc.) as you would in case of building a standard native app."),
+      new Note(7, "When working with native code, such as when writing native modules, you can launch the app from Android Studio or Xcode and take advantage of the native debugging features (setting up breakpoints, etc.) as you would in case of building a standard native app."),
+      new Note(8, "When working with native code, such as when writing native modules, you can launch the app from Android Studio or Xcode and take advantage of the native debugging features (setting up breakpoints, etc.) as you would in case of building a standard native app."),
+
     ],
   };
 
@@ -47,6 +52,10 @@ export default class Application extends Component {
     });
   };
 
+  createNote = () => {
+    // TODO
+  };
+
   render() {
     const {notes, showModal, selectedItemText} = this.state;
     return (
@@ -63,7 +72,8 @@ export default class Application extends Component {
 
         <NotesListScreen
           notes={notes}
-          onPressNote={this.openNoteScreen}/>
+          onPressNote={this.openNoteScreen}
+          onFabPress={this.createNote}/>
       </View>
     );
   }
