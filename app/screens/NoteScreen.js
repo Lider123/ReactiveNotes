@@ -6,12 +6,13 @@ import {
 } from "react-native";
 import PropTypes from "prop-types";
 
-export default function NoteScreen({text}) {
+export default function NoteScreen({text, onTextChanged}) {
   return(
     <View style={styles.container}>
       <TextInput
         style={styles.note}
         multiline={true}
+        onChangeText={onTextChanged}
         value={text}/>
     </View>
   );
@@ -19,6 +20,7 @@ export default function NoteScreen({text}) {
 
 NoteScreen.propTypes = {
   text: PropTypes.string.isRequired,
+  onTextChanged: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({

@@ -31,6 +31,7 @@ export default class NotesList extends Component {
     return <FlatList
       style={styles.container}
       data={this.props.notes}
+      extraData={this.props.notes.map(el => el.text)}
       keyExtractor={this._keyExtractor}
       renderItem={this._renderItem}/>;
   }

@@ -32,6 +32,8 @@ export default class Application extends Component {
   };
 
   closeNoteScreen = () => {
+    const {notes, selectedItemId, selectedItemText} = this.state;
+    notes.find(el => el.id === selectedItemId).text = selectedItemText;
     this.setState({
       showModal: false,
       selectedItemId: null,
@@ -39,17 +41,29 @@ export default class Application extends Component {
     });
   };
 
+  onSelectedTextChanged = text => {
+    this.setState({
+      selectedItemText: text,
+    });
+  };
+
   render() {
     const {notes, showModal, selectedItemText} = this.state;
     return (
       <View style={styles.container}>
+
         <Modal
           animationType="slide"
           visible={showModal}
           onRequestClose={this.closeNoteScreen}>
-          <NoteScreen text={selectedItemText}/>
+          <NoteScreen
+            text={selectedItemText}
+            onTextChanged={this.onSelectedTextChanged}/>
         </Modal>
-        <NotesListScreen notes={notes} onPressNote={this.openNoteScreen}/>
+
+        <NotesListScreen
+          notes={notes}
+          onPressNote={this.openNoteScreen}/>
       </View>
     );
   }
