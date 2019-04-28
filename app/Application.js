@@ -23,7 +23,6 @@ export default class Application extends Component {
       new Note(6, "When working with native code, such as when writing native modules, you can launch the app from Android Studio or Xcode and take advantage of the native debugging features (setting up breakpoints, etc.) as you would in case of building a standard native app."),
       new Note(7, "When working with native code, such as when writing native modules, you can launch the app from Android Studio or Xcode and take advantage of the native debugging features (setting up breakpoints, etc.) as you would in case of building a standard native app."),
       new Note(8, "When working with native code, such as when writing native modules, you can launch the app from Android Studio or Xcode and take advantage of the native debugging features (setting up breakpoints, etc.) as you would in case of building a standard native app."),
-
     ],
   };
 
@@ -38,7 +37,16 @@ export default class Application extends Component {
 
   closeNoteScreen = () => {
     const {notes, selectedItemId, selectedItemText} = this.state;
-    notes.find(el => el.id === selectedItemId).text = selectedItemText;
+
+    if (selectedItemText.length === 0) {
+      const updatedNotes = notes.filter(function(obj) {
+        return obj.id !== selectedItemId;
+      });
+      this.setState({ notes: updatedNotes });
+    }
+    else
+      notes.find(el => el.id === selectedItemId).text = selectedItemText;
+
     this.setState({
       showModal: false,
       selectedItemId: null,
@@ -53,7 +61,10 @@ export default class Application extends Component {
   };
 
   createNote = () => {
-    // TODO
+    const {notes} = this.state;
+    let id = Math.floor(Math.random() * 10000);
+    notes.push(new Note(id));
+    this.openNoteScreen(id);
   };
 
   render() {

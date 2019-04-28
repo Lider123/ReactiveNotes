@@ -33,7 +33,7 @@ export default class NotesListScreen extends Component {
         <FloatingActionButton
           iconName="add"
           iconColor="#444"
-          onPress={this.onFabPress}/>
+          onPress={this.props.onFabPress}/>
 
       </View>
     );
